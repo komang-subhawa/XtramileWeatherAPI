@@ -1,19 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using Weather.Domain;
 using Weather.Domain.DTOs;
+using Weather.Domain.Enums;
 
 namespace Weather.Service.Countries
 {
     public class CountryService: ICountryService
     {
-        private static readonly string[] Summaries = new[]
+        public OperationResult<List<CountryDto>> GetAll()
         {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
+            var countries = GetMockData();
+            return OperationResult<List<CountryDto>>.Success(countries);
+        }
 
-        public IEnumerable<CountryDto> GetAll()
+        public OperationResult<CountryDto> GetByCountryId(string countryId)
+        {
+            var countries = GetMockData();
+            var country = countries.SingleOrDefault(c => c.Id == countryId);
+            if (country is null)
+            {
+                return OperationResult<CountryDto>.Fail(OperationResultType.NoRecord, "Country not found");                
+            } 
+            else
+            {
+                return OperationResult<CountryDto>.Success(country);
+            }
+        }
+
+        private List<CountryDto> GetMockData()
         {
             List<CountryDto> countries = new List<CountryDto>
             {

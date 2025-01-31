@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using Weather.Domain.DTOs;
+using Weather.API.Helpers;
 using Weather.Service.Countries;
 
 namespace WeatherAPI.Controllers
@@ -17,9 +16,6 @@ namespace WeatherAPI.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<CountryDto> Get()
-        {
-            return _countryService.GetAll();
-        }
+        public IActionResult Get() => OperationResultResponder.GetServiceResponse(this, _countryService.GetAll());
     }
 }

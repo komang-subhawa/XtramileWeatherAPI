@@ -5,6 +5,7 @@ namespace Weather.Service.Countries
 {
     public interface ICountryService
     {
-        IEnumerable<CountryDto> GetAll();
+        OperationResult<List<CountryDto>> GetAll();
+        OperationResult<CountryDto> GetByCountryId(string countryId);
     }
 }

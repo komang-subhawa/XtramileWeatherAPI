@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Weather.Service.Cities;
 using Weather.Service.Countries;
+using Weather.Service.Weather;
 
 namespace Weather.API.Helpers
 {
@@ -10,6 +11,7 @@ namespace Weather.API.Helpers
         {
             services.AddTransient<ICountryService, CountryService>();
             services.AddTransient<ICityService, CityService>();
+            services.AddTransient<IWeatherService, WeatherService>();
         }
     }
 }
