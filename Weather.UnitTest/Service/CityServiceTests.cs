@@ -6,11 +6,11 @@ namespace Weather.UnitTest.Service
 {
     public class CityServiceTests
     {
-        private readonly CityService service;
+        private readonly CityService _service;
 
         public CityServiceTests()
         {
-            service = new CityService();
+            _service = new CityService();
         }
 
         [Fact]
@@ -20,7 +20,7 @@ namespace Weather.UnitTest.Service
             var validCountryId ="USA";
 
             // Act
-            var result = service.GetByCountryId(validCountryId);
+            var result = _service.GetByCountryId(validCountryId);
 
             // Assert
             Assert.NotNull(result);
@@ -39,7 +39,7 @@ namespace Weather.UnitTest.Service
             var validCityId = "NYC";
 
             // Act
-            var result = service.GetByCityId(validCityId);
+            var result = _service.GetByCityId(validCityId);
 
             // Assert
             Assert.NotNull(result);
@@ -56,7 +56,7 @@ namespace Weather.UnitTest.Service
             var invalidCityId = "XYZ";
 
             // Act
-            var result = service.GetByCityId(invalidCityId);
+            var result = _service.GetByCityId(invalidCityId);
 
             // Assert
             Assert.NotNull(result);

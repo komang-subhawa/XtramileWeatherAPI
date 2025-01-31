@@ -6,18 +6,18 @@ namespace Weather.UnitTest.Service
 {
     public class CountryServiceTests
     {
-        private readonly CountryService service;
+        private readonly CountryService _service;
 
         public CountryServiceTests()
         {
-            service = new CountryService();
+            _service = new CountryService();
         }
 
         [Fact]
         public void GetAll_ShouldReturnSuccessWithMockData()
         {
             // Act
-            var result = service.GetAll();
+            var result = _service.GetAll();
 
             // Assert
             Assert.NotNull(result);
@@ -39,7 +39,7 @@ namespace Weather.UnitTest.Service
             var validCountryId = "USA";
 
             // Act
-            var result = service.GetByCountryId(validCountryId);
+            var result = _service.GetByCountryId(validCountryId);
 
             // Assert
             Assert.NotNull(result);
@@ -55,7 +55,7 @@ namespace Weather.UnitTest.Service
             var invalidCountryId = "XYZ";
 
             // Act
-            var result = service.GetByCountryId(invalidCountryId);
+            var result = _service.GetByCountryId(invalidCountryId);
 
             // Assert
             Assert.NotNull(result);
