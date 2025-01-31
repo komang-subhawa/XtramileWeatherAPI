@@ -1,17 +1,26 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using System;
 using System.Net.Http;
 using Weather.Domain.DTOs;
 using Weather.Domain.DTOs.OpenWeatherMap;
 using Weather.Domain.Enums;
+using Weather.Domain.Settings;
 
 namespace Weather.Service.Weather
 {
     public class OpenWeatherMapWorker: IOpenWeatherMapWorker
     {
+        private readonly IOptions<OpenWeatherMapSettings> _settings;
+
+        public OpenWeatherMapWorker(IOptions<OpenWeatherMapSettings> settings)
+        {
+            _settings = settings;
+        }
+
         public OperationResult<OpenWeatherMapDto> GetOpenWeatherMapData(string cityName)
         {
-            var url = string.Format("https://api.openweathermap.org/data/2.5/weather?q={0}&appid={1}", cityName, "c764d533f587eaba096b5ea481ce3437");
+            var url = string.Format(_settings.Value.Url, cityName, _settings.Value.AppKey);
             try
             {
                 using (var httpClient = new HttpClient())

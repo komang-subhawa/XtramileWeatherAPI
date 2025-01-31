@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Text.Json.Serialization;
 using Weather.API.Helpers;
+using Weather.Domain.Settings;
 
 namespace WeatherAPI
 {
@@ -34,6 +35,7 @@ namespace WeatherAPI
                 });
             });
             WeatherDependency.Register(services);
+            services.Configure<OpenWeatherMapSettings>(this.Configuration.GetSection(nameof(OpenWeatherMapSettings)));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

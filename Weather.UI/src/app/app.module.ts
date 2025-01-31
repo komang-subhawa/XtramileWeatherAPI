@@ -10,6 +10,7 @@ import { httpInterceptorProviders } from './http-interceptors';
 import { WeatherService } from './services/weather.service';
 import { ApiService } from './services/api.service';
 import { HttpClientModule } from '@angular/common/http';
+import { EnvServiceProvider } from './env.service.provider';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
   providers: [
     httpInterceptorProviders,
     ApiService,
-    WeatherService
+    WeatherService,
+    EnvServiceProvider
   ],
   bootstrap: [AppComponent]
 })
