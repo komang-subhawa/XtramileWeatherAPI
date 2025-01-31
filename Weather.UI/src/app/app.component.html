@@ -1,0 +1,51 @@
+
+<div class="form">
+  <mat-card>
+    <mat-card-content>
+      <mat-form-field>
+        <mat-label>Country</mat-label>
+        <mat-select [(value)]="selectedCountryId" (selectionChange)="onCountryChange()">
+          <mat-option *ngFor="let country of countries" [value]="country.id">
+            {{country.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br/>
+      <mat-form-field>
+        <mat-label>City</mat-label>
+        <mat-select [(value)]="selectedCity" (selectionChange)="onCityChange()">
+          <mat-option *ngFor="let city of cities" [value]="city.name">
+            {{city.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br/>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div class="detail">
+  <mat-card *ngIf="weatherDetail">
+    <mat-card-header>
+      <mat-card-title>Weather in {{ selectedCity }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <ul>
+        <li> Location:
+          <ul>
+            <li>latitude: {{ weatherDetail.location.latitude }}</li>
+            <li>longitude: {{ weatherDetail.location.longitude }}</li>
+          </ul>
+        </li>
+        <li>Time: {{ weatherDetail.time }}</li>
+        <li>Wind: {{ weatherDetail.wind }}</li>
+        <li>Sky conditions: {{ weatherDetail.skyCondition }}</li>
+        <li>Temperature (in Celsius): {{ weatherDetail.temperatureCelcius }}</li>
+        <li>Temperature (in Fahrenheit): {{ weatherDetail.temperatureFahrenheit }}</li>
+        <li>Dew Point: {{ weatherDetail.dewPoint }}</li>
+        <li>Relative Humidity: {{ weatherDetail.relativeHumidity }}</li>
+        <li>Pressure: {{ weatherDetail.pressure }}</li>
+      </ul>
+    </mat-card-content>
+  </mat-card>
+</div>

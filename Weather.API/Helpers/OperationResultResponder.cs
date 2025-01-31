@@ -10,7 +10,6 @@ namespace Weather.API.Helpers
         public static IActionResult GetServiceResponse<T>(this ControllerBase controller, OperationResult<T> result)
         {
             var responseCode = GetResponseCode(result.ResultType);
-            controller.Response.StatusCode = (int)responseCode;
             if (result.ResultType == OperationResultType.Ok)
             {
                 return controller.StatusCode((int)responseCode, result.Value);

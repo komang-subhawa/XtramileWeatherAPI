@@ -18,17 +18,6 @@ namespace Weather.UnitTest.Controller
         {
             _mockWeatherService = new Mock<IWeatherService>();
             _controller = new WeatherController(_mockWeatherService.Object);
-
-            var mockHttpContext = new Mock<HttpContext>();
-            var mockResponse = new Mock<HttpResponse>();
-
-            mockResponse.SetupProperty(r => r.StatusCode);
-            mockHttpContext.Setup(h => h.Response).Returns(mockResponse.Object);
-
-            _controller.ControllerContext = new ControllerContext
-            {
-                HttpContext = mockHttpContext.Object
-            };
         }
 
         [Fact]
